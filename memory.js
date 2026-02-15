@@ -1,11 +1,9 @@
 let people={};
 
 export function rememberPerson(name){
-
  if(!people[name]){
   people[name]={trust:10};
- }
- else{
+ } else {
   people[name].trust+=5;
  }
 }
