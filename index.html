@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="face">
+    <div class="eyes" id="eyes">
+        <div class="eye"></div>
+        <div class="eye"></div>
+    </div>
+    <div class="mouth" id="mouth"></div>
+</div>
+
+<script type="module">
+import { seePerson, pet, ignore } from "./brain.js";
+
+window.seePerson = seePerson;
+window.pet = pet;
+window.ignore = ignore;
+</script>
+
+</body>
+</html>
