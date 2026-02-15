@@ -1,39 +1,37 @@
-import { getEmotion, setEmotion } from "./emotions.js";
-import { rememberPerson, isOwner, isKnown } from "./memory.js";
-import { reactToPerson, idleBehavior } from "./behavior.js";
+import { setEmotion } from "./emotions.js";
 import { updateFace } from "./face.js";
 
-let currentPerson = null;
+const API = "https://bullik.damp-glade-283e.workers.dev/";
 
-export function seePerson(name){
-    currentPerson = name;
+export async function seePerson(name){
 
-    if(isOwner(name)){
-        setEmotion("happy");
-    }
-    else if(isKnown(name)){
-        setEmotion("curious");
-    }
-    else{
-        setEmotion("scared");
-        rememberPerson(name);
-    }
+    try{
+        const res = await fetch(API + "?name=" + encodeURIComponent(name));
+        const data = await res.json();
 
-    reactToPerson(name);
-    updateFace(getEmotion());
+        setEmotion(data.emotion);
+        updateFace(data.emotion);
+    }
+    catch(err){
+        console.log("Server error",err);
+        setEmotion("confused");
+        updateFace("confused");
+    }
 }
 
 export function pet(){
     setEmotion("love");
-    updateFace(getEmotion());
+    updateFace("love");
 }
 
 export function ignore(){
     setEmotion("sad");
-    updateFace(getEmotion());
+    updateFace("sad");
 }
 
 setInterval(()=>{
-    idleBehavior();
-    updateFace(getEmotion());
-},4000);
+    const moods=["neutral","sleepy","curious"];
+    const m=moods[Math.floor(Math.random()*moods.length)];
+    setEmotion(m);
+    updateFace(m);
+},8000);
