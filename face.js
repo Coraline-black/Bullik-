@@ -1,43 +1,54 @@
 export function updateFace(emotion){
 
-    const eyes = document.getElementById("eyes");
-    const mouth = document.getElementById("mouth");
+const e1=document.getElementById("eye1");
+const e2=document.getElementById("eye2");
+const mouth=document.getElementById("mouth");
 
-    switch(emotion){
+const eyes=[e1,e2];
 
-        case "happy":
-            eyes.style.height="20px";
-            mouth.style.borderRadius="0 0 50px 50px";
-            break;
+eyes.forEach(e=>{
+    e.style.height="25px";
+    e.style.background="white";
+});
 
-        case "scared":
-            eyes.style.height="40px";
-            mouth.style.borderRadius="50%";
-            break;
+mouth.style.borderRadius="0";
 
-        case "love":
-            eyes.style.background="pink";
-            break;
+switch(emotion){
 
-        case "sad":
-            mouth.style.borderRadius="50px 50px 0 0";
-            break;
+case "happy":
+    mouth.style.borderRadius="0 0 50px 50px";
+break;
 
-        case "excited":
-            eyes.style.background="cyan";
-            break;
+case "sad":
+    mouth.style.borderRadius="50px 50px 0 0";
+break;
 
-        case "sleepy":
-            eyes.style.height="5px";
-            break;
+case "scared":
+    eyes.forEach(e=>e.style.height="45px");
+break;
 
-        case "curious":
-            eyes.style.background="yellow";
-            break;
+case "love":
+    eyes.forEach(e=>e.style.background="pink");
+break;
 
-        default:
-            eyes.style.height="25px";
-            eyes.style.background="white";
-            mouth.style.borderRadius="0";
-    }
+case "excited":
+    eyes.forEach(e=>e.style.background="cyan");
+break;
+
+case "sleepy":
+    eyes.forEach(e=>e.style.height="6px");
+break;
+
+case "curious":
+    eyes.forEach(e=>e.style.background="yellow");
+break;
+
+case "confused":
+    eyes[0].style.background="red";
+    eyes[1].style.background="blue";
+break;
+
+default:
+    mouth.style.borderRadius="0";
+}
 }
