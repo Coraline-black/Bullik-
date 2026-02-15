@@ -1,13 +1,6 @@
-import { setEmotion } from "./emotions.js";
+export function moodCycle(){
 
-export function reactToPerson(name){
-    if(name==="me"){
-        setEmotion("excited");
-    }
-}
+const moods=["neutral","sleepy","curious"];
+return moods[Math.floor(Math.random()*moods.length)];
 
-export function idleBehavior(){
-    let states = ["neutral","sleepy","curious"];
-    let r = states[Math.floor(Math.random()*states.length)];
-    setEmotion(r);
 }
