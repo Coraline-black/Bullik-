@@ -1,10 +1,15 @@
-let known=[];
+let people={};
 
-export function remember(name){
- if(!known.includes(name))
-  known.push(name);
+export function rememberPerson(name){
+
+ if(!people[name]){
+  people[name]={trust:10};
+ }
+ else{
+  people[name].trust+=5;
+ }
 }
 
-export function isKnown(name){
- return known.includes(name);
+export function getTrust(name){
+ return people[name]?.trust || 0;
 }
